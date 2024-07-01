@@ -1,6 +1,6 @@
-# Streaming AI Application with Spring Boot, FastAPI, and React
+# Streaming Application with Spring Boot, FastAPI and React
 
-This project demonstrates how to create a streaming AI assistant using Spring Boot, FastAPI, and React. The application streams a message letter by letter from the backend (Spring Boot) to the frontend (React)
+This project demonstrates how to create a streaming application using Spring Boot, FastAPI, and React. The application streams a message letter by letter from the backend (Spring Boot) to the frontend (React)
 
 
 ## Introduction
