@@ -5,7 +5,7 @@ This project demonstrates how to create a streaming application using Spring Boo
 
 ## Introduction
 
-This project integrates Spring Boot, FastAPI, and React to create a streaming AI assistant.
+This project integrates Spring Boot, FastAPI, and React.
 
 **FastAPI** handles the API endpoints for sending messages. It is responsible for receiving the messages from the user and forwarding them to the Spring Boot application.
 
