@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Response</title>
+    <style>
+        #response-container {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            max-width: 600px;
+            min-height: 200px;
+            overflow-y: scroll;
+            white-space: pre-wrap; /* Ensure line breaks are respected */
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Response</h1>
+    <div id="root"></div> <!-- React root container -->
+
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class AIResponse extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    currentSentence: ''
+                };
+            }
+
+            componentDidMount() {
+                const eventSource = new EventSource('/stream-ai-responses');
+
+                eventSource.onmessage = (event) => {
+                    const char = event.data;
+
+                    // Update state with currentSentence
+                    this.setState(prevState => ({
+                        currentSentence: prevState.currentSentence + char
+                    }));
+
+                    // Scroll to bottom of container
+                    const responseContainer = document.getElementById('response-container');
+                    responseContainer.scrollTop = responseContainer.scrollHeight;
+                };
+
+                eventSource.onerror = (event) => {
+                    console.error("EventSource error:", event);
+                    eventSource.close();
+                };
+            }
+
+            render() {
+                return (
+                    <div>
+                        <div id="response-container">{this.state.currentSentence}</div>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <AIResponse />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>
