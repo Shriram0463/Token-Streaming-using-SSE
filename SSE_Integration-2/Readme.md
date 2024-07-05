@@ -1,18 +1,11 @@
-# Streaming Application with Spring Boot, FastAPI and React
+# Streaming Application with Spring Boot, FastAPI, and React
 
-This project demonstrates how to create a streaming application using Spring Boot, FastAPI, and React. The application streams a message letter by letter from the backend (Spring Boot) to the frontend (React)
+This project demonstrates how to create a streaming application using Spring Boot, FastAPI, and React. The application streams a message letter by letter from the backend (Spring Boot) to the frontend (React).
 
 
 ## Introduction
 
-This project integrates Spring Boot, FastAPI, and React.
-
-**FastAPI** handles the API endpoints for sending messages. It is responsible for receiving the messages from the user and forwarding them to the Spring Boot application.
-
-**Spring Boot** manages the message streaming process. Upon receiving messages from FastAPI, it processes them and streams the output to the frontend application using Server-Sent Events (SSE).
-
-**React** powers the frontend application, displaying the streamed messages in real-time. The application listens for incoming messages from the Spring Boot backend and updates the user interface dynamically.
-
+This project integrates Spring Boot and FastAPI to create a streaming application. The backend service receives and processes messages, which are then streamed to the frontend application in real-time.
 
 ## Features
 
@@ -24,6 +17,7 @@ Simple and intuitive user interface.
 
 
 ## Architecture
+
 The project consists of three main components:
 
 **Spring Boot**: Backend service to handle message streaming.
@@ -31,6 +25,17 @@ The project consists of three main components:
 **FastAPI**: API service to send messages to the Spring Boot application.
 
 **React**: Frontend application to display the streamed messages.
+
+
+## Usage
+
+To send messages to the backend (Spring Boot) via FastAPI, use the following curl command in a seperate terminal after running Fastapi and Springboot:
+
+     curl -X POST http://localhost:8000/send-messages  -H "Content-Type: application/json"  -d "{\"messages\": [\"Message 1\", \"Message 2\", \"Message 3\"]}"
+
+Replace "Message 1", "Message 2", "Message 3" with your desired messages. This command sends a POST request to the FastAPI endpoint at http://localhost:8000/send-messages with a JSON payload containing the messages array.
+
+After sending this, run react app to start the application.
 
 
 ## Prerequisites
@@ -58,7 +63,7 @@ Maven
 
 **Java**: Backend development with Spring Boot.
 
-**Python**: API development with FastAPI.
+**Python**: API development with FastAPI
 
 
 ## License
